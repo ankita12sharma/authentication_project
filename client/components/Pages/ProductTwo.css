@@ -1,0 +1,17 @@
+.productcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: none;
+}
+.styled-product {
+  box-shadow: 0 0 1.2px rgba(0, 0, 0);
+  height: 400px;
+  width: 70%;
+  margin-left: 300px;
+}
+.product-group input[type="text"] {
+  flex: 3px;
+  padding: 7px;
+  height: 30%;
+  width: 80%;
+}

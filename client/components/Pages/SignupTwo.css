@@ -1,0 +1,84 @@
+.signupcontainer {
+  padding: 20px;
+  /*max-width: 300px;*/
+  margin: 0px auto;
+  background-color: #fff;
+}
+
+.signupheader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.signupheading {
+  font-weight: bold;
+  margin-top: 25px;
+  color: #555;
+  font-size: 24px;
+}
+
+.styled-signup {
+  background-color: #f9f9f9;
+  height: 400px;
+  margin: 0 auto;
+  width: 70%;
+  margin-top: 60px;
+  margin-right: 130px;
+  margin-top: 50px;
+  border-radius: 8px;
+  box-shadow: 0 0 0px rgba(0, 0, 1.1);
+}
+.signup-group {
+  display: flex;
+  margin-left: 8px;
+  margin-right: 22px;
+}
+
+.signup-group label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  min-width: 80px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.signup-group input[type="text"] {
+  flex: 3;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 60%;
+  box-sizing: border-box;
+  margin-top: 3px;
+  margin-top: 6px;
+}
+
+.signupbtn {
+  cursor: pointer;
+  width: 30%;
+  height: 14%;
+  margin-top: 40px;
+  border-radius: 12px;
+  margin-left: 270px;
+}
+/* Styling for the paragraph container */
+.loc {
+  font-size: 14px; /* Adjust the font size */
+  color: #555; /* Choose a suitable text color */
+  margin: 10px 0; /* Add spacing around the element */
+  text-align: center; /* Align text to the center */
+}
+
+/* Styling for the anchor link */
+.myanchor {
+  color: #007bff; /* Set the anchor text color */
+  text-decoration: none; /* Remove underline by default */
+  font-weight: bold; /* Make the link text bold */
+}
+
+.myanchor:hover {
+  text-decoration: underline; /* Add underline on hover */
+  color: #0056b3; /* Darken the link color on hover */
+}

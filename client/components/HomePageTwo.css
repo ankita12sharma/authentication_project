@@ -1,0 +1,44 @@
+/* ===== MAIN CONTAINER ===== */
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  flex: 1;
+  margin-left: 0;
+  padding: 20px;
+  background: #f1f5f9;
+  width: 100%;
+  overflow-y: auto;
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+/* ===== DESKTOP VIEW ===== */
+@media (min-width: 992px) {
+  .sidebar {
+    position: relative;
+    left: 0;
+  }
+
+  .main-content {
+    margin-left: 250px;
+  }
+
+  .overlay {
+    display: none;
+  }
+}
