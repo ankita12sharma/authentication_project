@@ -50,11 +50,11 @@ The project follows a **modular MVC architecture** on both frontend and backend 
 
 ## 📸 Screenshots
 
-### Signup Page
+### Signup Form
 
 <img width="1312" height="723" alt="SignupForm" src="https://github.com/user-attachments/assets/3947fc9c-88d6-40cf-99ae-7b5b7ebdbf88" />
 
-### Login Page
+### Login Form
 
 <img width="1270" height="674" alt="LoginForm" src="https://github.com/user-attachments/assets/8a679770-bf2a-47de-b723-11f0f9edf06d" />
 
