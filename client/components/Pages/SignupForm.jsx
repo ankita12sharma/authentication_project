@@ -14,10 +14,6 @@ function SignupForm() {
   const navigate = useNavigate();
   const [signupUser, { isLoading }] = useSignupUserMutation();
 
-  // const handleChange = (e) => {
-  //   setSignupInfo({ ...signupInfo, [e.target.name]: e.target.value });
-  // };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSignupInfo((prev) => ({
@@ -36,17 +32,11 @@ function SignupForm() {
     }
 
     try {
-      // const res = await signupUser(signupInfo).unwrap();
-
-      // if (res.success) {
-      //   handleSuccess(res.message);
-      //   setTimeout(() => navigate("/login"), 1000);
-      // }
       await signupUser(signupInfo).unwrap();
       handleSuccess("Signup successfull!!");
       setTimeout(() => navigate("/login"), 1000);
     } catch (err) {
-      handleError("Signup failed");
+      handleError("Signup failed!!");
     }
   };
 

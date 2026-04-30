@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../../utils";
 import { useLoginUserMutation } from "../../redux/slices/userSlice";
 
@@ -14,7 +13,11 @@ function LoginForm() {
   const [loginUser, { isLoading }] = useLoginUserMutation();
 
   const handleChange = (e) => {
-    setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setLoginInfo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleLogin = async (e) => {
@@ -23,19 +26,31 @@ function LoginForm() {
     try {
       const res = await loginUser(loginInfo).unwrap();
 
-      if (res.success) {
-        handleSuccess(res.message);
+      const token = res?.jwtToken || res?.token;
+      const userName = res?.name || res?.user?.name;
+      const email = res?.email || res?.user?.email;
 
-        localStorage.setItem("token", res.jwtToken);
-        localStorage.setItem("loggedInUser", res.name);
-        localStorage.setItem("email", res.email);
-
-        setTimeout(() => {
-          navigate("/home");
-        }, 1000);
+      if (!token) {
+        throw new Error("Token not received");
       }
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("loggedInUser", userName || "");
+      localStorage.setItem("email", email || "");
+
+      handleSuccess("Login successful!!");
+
+      setTimeout(() => {
+        navigate("/home");
+      }, 1000);
     } catch (err) {
-      handleError(err?.data?.message || "Login failed");
+      if (err?.status === 403) {
+        handleError("Invalid email or password!!");
+      } else if (err?.status === 500) {
+        handleError("Error in logging!!");
+      } else if (err?.data?.message) {
+        handleError(err.data.message);
+      }
     }
   };
 
@@ -66,8 +81,6 @@ function LoginForm() {
           Don’t have an account? <Link to="/signup">Signup</Link>
         </p>
       </form>
-
-      <ToastContainer />
     </div>
   );
 }

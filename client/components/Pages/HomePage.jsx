@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import { handleSuccess } from "../../utils";
 
 import Sidebar from "../SideBar";
@@ -7,13 +7,12 @@ import Header from "../Header";
 
 import "../SideBar.css";
 import "../HomePage.css";
-//import "../Header.css";
-//import "../HomePageTwo.css";
 import "../Header.css";
 
 function HomePage() {
   const [loggedInUser, setLoggedInUser] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,32 +20,41 @@ function HomePage() {
 
     if (!token) {
       navigate("/login");
-    } else {
-      setLoggedInUser(user);
+      return;
     }
-  }, [navigate]);
+
+    setLoggedInUser(user);
+
+    // ✅ SHOW TOAST AFTER NAVIGATION
+    if (location.state?.showToast) {
+      handleSuccess("Login successful!!");
+
+      // ✅ clear state so it doesn't repeat on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, []); // run once
 
   const handleLogout = () => {
     localStorage.clear();
     handleSuccess("User Logged Out");
-    setTimeout(() => navigate("/login"), 800);
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 800);
   };
 
   return (
     <div className="app-layout">
-      {/* HEADER */}
       <header className="layout-header">
         <Header user={loggedInUser} onLogout={handleLogout} />
       </header>
 
-      {/* SIDEBAR */}
       <aside className="layout-sidebar">
         <Sidebar />
       </aside>
 
-      {/* MAIN CONTENT */}
       <main className="layout-content">
-        <Outlet /> {/* Pages like RegisterPage load here */}
+        <Outlet />
       </main>
     </div>
   );

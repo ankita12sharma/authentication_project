@@ -12,7 +12,7 @@ const createEmployee = async (req, res) => {
         success: false,
       });
     }
-
+ 
     const employeemodel = new EmployeeModel({ emp_id, name, post, salary });
     await employeemodel.save();
 
@@ -106,7 +106,7 @@ const updateEmployee = async (req, res) => {
     if (emp_id) updateData.id = id;
     if (name) updateData.name = name;
     if (post) updateData.post = post;
-    if (salary) updateData.salary;
+    if (salary) updateData.salary = salary;
 
     const updatedEmployee = await EmployeeModel.findByIdAndUpdate(
       id,

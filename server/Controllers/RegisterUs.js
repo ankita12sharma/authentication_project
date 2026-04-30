@@ -136,7 +136,7 @@ const login = async (req, res) => {
     const jwt = userModel.sign(
       { email: user.email, _id: user._id },
       process.env.JWT_Token,
-      { expiresIn: "24h" }
+      { expiresIn: "24h" },
     );
     res.status(200).json({
       message: "Login successfull!!",
@@ -151,3 +151,38 @@ const login = async (req, res) => {
   }
 };
 module.expprts = { signup, login };
+
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const userData = await UserModel.findOne({ email });
+    if (!userData) {
+      res.status(404).json({
+        responseCode: "404",
+        responseMessage: "User does not exist!!",
+      });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      res.status(403).json({
+        responseCode: "403",
+        responseMessage: "Invalid email or password!!",
+      });
+    }
+    const Token = jwt.sign(
+      { email: user.email, _id: user._id },
+      process.env.JWT_Token,
+      { expiresIn: "24h" },
+    );
+    res.status(200).json({
+      responseVode: "200",
+      responseMessage: "Login successfull!!",
+      Token,
+    });
+  } catch (err) {
+    res.status(500).json({
+      responseCode: "500",
+      responseMessage: "Server error!!",
+    });
+  }
+};

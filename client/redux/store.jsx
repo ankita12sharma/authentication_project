@@ -7,7 +7,7 @@ import { registerSlice } from "../redux/slices/registerSlice";
 import { userSlice } from "../redux/slices/userSlice";
 
 const store = configureStore({
-  reducer: { 
+  reducer: {
     [productSlice.reducerPath]: productSlice.reducer,
     // [postSlice.reducerPath]: postSlice.reducer,
     // [categorySlice.reducerPath]: categorySlice.reducer,

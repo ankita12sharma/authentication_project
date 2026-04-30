@@ -33,6 +33,8 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const app = express();
+
 require("dotenv").config();
 
 const ProductRouter = require("./Routes/ProductRoute");
@@ -42,7 +44,6 @@ const UserRouter = require("./Routes/UserRoute");
 const EmployeeRouter = require("./Routes/EmployeeRoute");
 const RegisterRouter = require("./Routes/RegisterRoute");
 
-const app = express();
 const PORT = 8015;
 
 mongoose

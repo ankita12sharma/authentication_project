@@ -16,7 +16,7 @@ export const empSlice = createApi({
         method: "POST",
         body: newData,
       }),
-      providesTags: ["Employees"],
+      invalidatesTags: ["Employees"],
     }),
     updateEmployee: builder.mutation({
       query: ({ id, ...updateEmp }) => ({
@@ -24,14 +24,14 @@ export const empSlice = createApi({
         method: "PUT",
         body: updateEmp,
       }),
-      providesTags: ["Employees"],
+      invalidatesTags: ["Employees"],
     }),
     deleteEmployee: builder.mutation({
       query: (id) => ({
         url: `/deleteemp/${id}`,
         method: "DELETE",
       }),
-      providesTags: ["Employees"],
+      invalidatesTags: ["Employees"],
     }),
   }),
 });
